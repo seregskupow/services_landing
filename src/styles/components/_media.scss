@@ -1,0 +1,160 @@
+@media screen and (max-width: 1280px) {
+	.navBurger {
+		position: fixed;
+		right: 20px;
+		top: 40px;
+
+		width: 30px;
+		height: 24px;
+
+		background: var(--white);
+		background-clip: content-box;
+
+		box-sizing: border-box;
+
+		border-top: 11px solid transparent;
+		border-bottom: 11px solid transparent;
+
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		-webkit-transition: all 0.25s ease-in-out;
+		transition: all 0.25s ease-in-out;
+
+		cursor: pointer;
+
+		z-index: 7;
+
+		&::before,
+		&::after {
+			content: "";
+
+			position: absolute;
+			right: 0;
+
+			height: 2px;
+			width: 100%;
+			background: var(--white);
+			will-change: rotate;
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+			-webkit-transition: all 0.5s ease;
+			transition: all 0.5s ease;
+		}
+
+		&::before {
+			top: -10px;
+		}
+
+		&::after {
+			bottom: -10px;
+			width: 90%;
+		}
+
+		&.active {
+			background: transparent;
+			background-clip: content-box;
+
+			&::before {
+				-webkit-transform: rotate(135deg);
+				transform: rotate(135deg);
+				top: 0;
+				background: #eee;
+				width: 110%;
+			}
+
+			&::after {
+				bottom: 0;
+				-webkit-transform: rotate(-135deg);
+				transform: rotate(-135deg);
+				background: #eee;
+				width: 110%;
+			}
+		}
+	}
+
+	.overlay {
+		position: fixed;
+		background: #2a3140;
+		top: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transform-origin: right top;
+		transform: scale(0);
+		visibility: hidden;
+		transition: all 0.4s ease-in-out;
+		overflow: hidden;
+
+		&.open {
+			opacity: 0.99;
+			visibility: visible;
+			transform: scale(1);
+			z-index: 6;
+			& li {
+				display: block;
+				animation: fadeInRight 0.4s cubic-bezier(0.42, 0.83, 0.7, 1.5) forwards;
+				animation-delay: 0.4s;
+				transform: rotate(-7deg);
+				transform-origin: right bottom;
+			}
+		}
+
+		& .overlayMenu {
+			position: absolute;
+			text-align: right;
+			right: 6vw;
+			top: 15vw;
+		}
+	}
+	.menu {
+		& li {
+			display: block;
+			position: relative;
+			opacity: 0;
+			width: 100%;
+
+			&:nth-child(2) {
+				animation-delay: 0.5s;
+			}
+			&:nth-child(3) {
+				animation-delay: 0.6s;
+			}
+			&:nth-child(4) {
+				animation-delay: 0.7s;
+			}
+			&:nth-child(5) {
+				animation-delay: 0.8s;
+			}
+			&:nth-child(6) {
+				animation-delay: 0.9s;
+			}
+			&:nth-child(7) {
+				animation-delay: 1s;
+			}
+
+			& a {
+				display: inline-block;
+
+				margin: 5px 0;
+
+				border: 1px solid rgba(255, 255, 255, 0.09);
+
+				padding: 10px 40px 10px 40px;
+				transition: 0.2s;
+
+				&:hover,
+				&:active,
+				&:focus {
+					transform: translateX(-2px);
+					padding-left: 80px;
+					outline: 1px solid rgba(255, 255, 255, 0.3);
+					background: rgba(255, 255, 255, 0.03);
+				}
+			}
+		}
+	}
+	.locked {
+		overflow: hidden;
+	}
+}

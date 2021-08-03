@@ -1,0 +1,14 @@
+$blue: #11749e;
+$lightBlue: #5993b2;
+$darkBlue: #0e6184;
+$white: #fff;
+$darkGrey: #222222;
+$black: #000000;
+:root {
+	--blue: #{$blue};
+	--light-blue: #{$lightBlue};
+	--dark-blue: #{$darkBlue};
+	--white: #{$white};
+	--dark-grey: #{$darkGrey};
+	--black: #{$black};
+}

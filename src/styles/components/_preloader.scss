@@ -1,0 +1,66 @@
+#preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: 100;
+	background: #2f2f2f;
+	transition: all 0.5s ease;
+}
+.loader-3 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.loader-3 .dot {
+	width: 20px;
+	height: 20px;
+	background: #094058;
+	border-radius: 50%;
+	position: absolute;
+}
+
+.loader-3 .dot1 {
+	left: -40px;
+	-webkit-animation: dot-jump 0.5s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite;
+	animation: dot-jump 0.5s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite;
+}
+
+.loader-3 .dot2 {
+	left: 0px;
+	-webkit-animation: dot-jump 0.5s 0.2s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite;
+	animation: dot-jump 0.5s 0.2s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite;
+}
+
+.loader-3 .dot3 {
+	left: 40px;
+	-webkit-animation: dot-jump 0.5s 0.4s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite;
+	animation: dot-jump 0.5s 0.4s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite;
+}
+
+@-webkit-keyframes dot-jump {
+	0% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+	100% {
+		-webkit-transform: translateY(-15px);
+		transform: translateY(-15px);
+	}
+}
+
+@keyframes dot-jump {
+	0% {
+		background: #094058;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	100% {
+		background: #14759e;
+		-webkit-transform: translateY(-15px);
+		transform: translateY(-15px);
+	}
+}
