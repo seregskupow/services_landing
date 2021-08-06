@@ -27,9 +27,9 @@ const libsDest = './dist/libs/';
 
 function clear() {
 	return src('./dist/*', {
-					read: false
-			})
-			.pipe(clean());
+		read: false
+	})
+		.pipe(clean());
 }
 
 // JS function 
@@ -38,17 +38,17 @@ function js() {
 	const source = './src/js/*.js';
 
 	return src(source)
-			.pipe(changed(source))
-			.pipe(concat('bundle.js'))
-			.pipe(uglify())
-			.pipe(rename({
-					extname: '.min.js'
-			}))
-			.pipe(dest(jsDest))
-			.pipe(browsersync.stream());
+		.pipe(changed(source))
+		.pipe(concat('bundle.js'))
+		.pipe(uglify({ mangle: { toplevel: true } }))
+		.pipe(rename({
+			extname: '.min.js'
+		}))
+		.pipe(dest(jsDest))
+		.pipe(browsersync.stream());
 }
 
-function libs(){
+function libs() {
 	const source = './src/libs/**/*';
 
 	return src(source)
@@ -61,31 +61,31 @@ function css() {
 	const source = './src/styles/main.scss';
 
 	return src(source)
-			.pipe(changed(source))
-			.pipe(sass())
-			.pipe(autoprefixer({
-					overrideBrowserslist: ['last 2 versions'],
-					cascade: false
-			}))
-			.pipe(rename({
-					extname: '.min.css'
-			}))
-			.pipe(cssnano())
-			.pipe(dest(styleDest))
-			.pipe(browsersync.stream());
+		.pipe(changed(source))
+		.pipe(sass())
+		.pipe(autoprefixer({
+			overrideBrowserslist: ['last 2 versions'],
+			cascade: false
+		}))
+		.pipe(rename({
+			extname: '.min.css'
+		}))
+		.pipe(cssnano())
+		.pipe(dest(styleDest))
+		.pipe(browsersync.stream());
 }
 
 // Optimize images
 
 function img() {
 	return src('./src/img/**/*')
-			.pipe(imagemin())
-			.pipe(dest(imgDest));
+		.pipe(imagemin())
+		.pipe(dest(imgDest));
 }
 
 function reload(done) {
-  browsersync.reload();
-  done();
+	browsersync.reload();
+	done();
 }
 
 
@@ -95,7 +95,7 @@ function watchFiles() {
 	watch('./src/styles/*', css);
 	watch('./src/js/*', js);
 	watch('./src/img/*', img);
-	watch('./*.html',reload);
+	watch('./*.html', reload);
 	watch('./src/libs/*', libs);
 }
 
@@ -103,10 +103,10 @@ function watchFiles() {
 
 function browserSync() {
 	browsersync.init({
-			server: {
-					baseDir: './'
-			},
-			port: 3000
+		server: {
+			baseDir: './'
+		},
+		port: 3000
 	});
 }
 
@@ -114,4 +114,3 @@ function browserSync() {
 
 exports.watch = parallel(watchFiles, browserSync);
 exports.default = series(clear, parallel(js, css, img, libs));
-	
